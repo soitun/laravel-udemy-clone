@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Course;
 use Illuminate\Http\Request;
-use function MongoDB\BSON\toJSON;
 
 class HomeController extends Controller
 {

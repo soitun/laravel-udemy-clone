@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Cart;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 
 class EnrollController extends Controller

@@ -89,7 +89,19 @@
                     </div>
                 </div>
             @else
-                <div class="title">Cart is empty</div>
+                <div class="row justify-content-center py-5">
+                    <div class="col-md-8 col-lg-6 text-center">
+                        <div class="bg-white border rounded p-5 shadow-sm">
+                            <p class="text-muted mb-2"><i class="fas fa-shopping-cart fa-3x"></i></p>
+                            <h2 class="h5 mb-3" style="color: #505763;">Your cart is empty</h2>
+                            <p class="text-muted mb-4">Add courses from the catalog to see them here before checkout.</p>
+                            <a href="{{ route('home') }}" class="btn btn-sign-up mr-2 mb-2">Explore courses</a>
+                            @auth
+                                <a href="{{ route('user.courses') }}" class="btn btn-outline-secondary mb-2">My courses</a>
+                            @endauth
+                        </div>
+                    </div>
+                </div>
             @endif
         </div>
     </section>

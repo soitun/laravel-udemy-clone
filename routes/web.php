@@ -23,8 +23,8 @@ Route::get('enroll', 'EnrollController@enroll')->name('enroll');
 
 // users
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('my_courses', 'UserController@courses')->name('user.courses');
-    Route::get('my_courses/{course}/lesson/{id}', 'UserController@lesson')->name('user.courses.lessons');
+    Route::get('my-courses', 'UserController@courses')->name('user.courses');
+    Route::get('my-courses/{course}/lesson/{id}', 'UserController@lesson')->name('user.courses.lessons');
 
     Route::get('instructor/become', 'InstructorOnboardingController@show')->name('instructor.become');
     Route::post('instructor/become', 'InstructorOnboardingController@store')->name('instructor.become.store');

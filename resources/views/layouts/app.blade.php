@@ -10,6 +10,7 @@
     <title>Laravel Udemy Clone</title>
 
     @include('partials.header')
+    @stack('styles')
 </head>
 <body class="gray-bg">
     @include('partials.navbar')

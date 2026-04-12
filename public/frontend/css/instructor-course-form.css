@@ -1,0 +1,138 @@
+/* Instructor course create/edit form — eye-soothing card and fields */
+.instructor-course-create {
+    --icc-card: #fdfdfc;
+    --icc-border: #e2e8e6;
+    --icc-text: #3a4248;
+    --icc-muted: #6b7785;
+    --icc-accent: #c75b6a;
+    --icc-accent-soft: rgba(199, 91, 106, 0.12);
+    --icc-radius: 14px;
+    --icc-shadow: 0 8px 32px rgba(45, 55, 60, 0.06);
+}
+
+.instructor-course-create .instructor-create-shell {
+    background: linear-gradient(165deg, #e8eeec 0%, #f2f4f3 42%, #eef1f0 100%);
+    padding-top: 1.5rem;
+    padding-bottom: 3.5rem;
+}
+
+.instructor-course-create .instructor-create-card {
+    background: var(--icc-card);
+    border: 1px solid var(--icc-border);
+    border-radius: var(--icc-radius);
+    box-shadow: var(--icc-shadow);
+    max-width: 880px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.instructor-course-create .instructor-create-card__head {
+    padding: 1.75rem 2rem 1.25rem;
+    border-bottom: 1px solid var(--icc-border);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 251, 250, 0.95) 100%);
+}
+
+.instructor-course-create .instructor-create-card__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--icc-text);
+    margin: 0 0 0.35rem;
+}
+
+.instructor-course-create .instructor-create-card__sub {
+    font-size: 0.9375rem;
+    color: var(--icc-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.instructor-course-create .instructor-create-card__body {
+    padding: 2rem 2rem 1.5rem;
+}
+
+.instructor-course-create .instructor-create-card__foot {
+    padding: 1.25rem 2rem 2rem;
+    background: rgba(245, 247, 246, 0.6);
+    border-top: 1px solid var(--icc-border);
+}
+
+.instructor-course-create label {
+    font-weight: 500;
+    color: #4a5560;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.instructor-course-create .form-control {
+    border-radius: 10px;
+    border-color: var(--icc-border);
+    background-color: #fafbfb;
+    color: var(--icc-text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.instructor-course-create .form-control:hover {
+    border-color: #cfd6d4;
+    background-color: #fff;
+}
+
+.instructor-course-create .form-control:focus {
+    border-color: #b8c5c1;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px var(--icc-accent-soft);
+}
+
+.instructor-course-create .form-group {
+    margin-bottom: 1.35rem;
+}
+
+.instructor-course-create .form-text {
+    color: #8a9399;
+    font-size: 0.8125rem;
+}
+
+.instructor-course-create .form-check {
+    padding: 1rem 1.1rem;
+    background: rgba(245, 247, 246, 0.85);
+    border-radius: 10px;
+    border: 1px solid var(--icc-border);
+}
+
+.instructor-course-create .form-check-label {
+    color: var(--icc-text);
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.instructor-course-create .btn-instructor-save {
+    background: linear-gradient(135deg, #c75b6a 0%, #b84e5d 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.65rem 1.75rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 14px rgba(199, 91, 106, 0.28);
+    transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.instructor-course-create .btn-instructor-save:hover {
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(199, 91, 106, 0.32);
+}
+
+.instructor-course-create .btn-instructor-save:active {
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .instructor-course-create .btn-instructor-save,
+    .instructor-course-create .form-control {
+        transition: none;
+    }
+
+    .instructor-course-create .btn-instructor-save:hover {
+        transform: none;
+    }
+}

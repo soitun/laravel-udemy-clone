@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function courses()
     {
-        $enrolls = auth()->user()->enrolls;
+        $enrolls = auth()->user()->enrolls()->with(['course.lessons'])->get();
 
         return view('users.courses', compact('enrolls'));
     }

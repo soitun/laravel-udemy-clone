@@ -4,14 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Course;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $courses = Course::orderBy('created_at', 'desc')->take(10)->get();
-        return view('home', compact('courses'));
+        $courseQuery = static function ($query) {
+            $query->with(['category'])
+                ->withCount('lessons')
+                ->withAvg('reviews', 'rating');
+        };
+
+        $topCourses = Course::query()
+            ->tap($courseQuery)
+            ->inRandomOrder()
+            ->limit(12)
+            ->get();
+
+        $courses = Course::query()
+            ->tap($courseQuery)
+            ->orderByDesc('created_at')
+            ->take(10)
+            ->get();
+
+        $totalCourses = Course::count();
+
+        return view('home', compact('courses', 'topCourses', 'totalCourses'));
     }
 
     // courses by category
@@ -31,6 +49,7 @@ class HomeController extends Controller
     public function checkAuth()
     {
         $isLoggedIn = auth()->check() ? true : false;
+
         return response()->json(['success' => $isLoggedIn]);
     }
 }

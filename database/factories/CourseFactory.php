@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Course>
@@ -24,7 +25,7 @@ class CourseFactory extends Factory
             'language' => 'English',
             'price' => fake()->numberBetween(100, 150),
             'level' => 'Beginner',
-            'thumbnail' => null,
+            'thumbnail' => 'https://picsum.photos/seed/'.Str::uuid().'/640/360',
             'video_url' => null,
             'visibility' => true,
             'category_id' => fake()->numberBetween(1, 10),

@@ -56,7 +56,7 @@
                                     <div class="course-box-2">
                                         <div class="course-image">
                                             <a href="{{ route('course_detail', $course) }}">
-                                                <img src="{{ asset('images/learning.jpg') }}" alt="" class="img-fluid">
+                                                <img src="{{ $course->thumbnail_url }}" alt="" class="img-fluid">
                                             </a>
                                         </div>
                                         <div class="course-details">

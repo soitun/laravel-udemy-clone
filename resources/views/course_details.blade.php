@@ -139,7 +139,7 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="about-instructor-image">
-                                    <img src="" alt="" class="img-fluid">
+                                    <img src="{{ asset('images/avatar.png') }}" alt="" class="img-fluid">
                                     <ul>
                                         <!-- <li><i class="fas fa-star"></i><b>4.4</b> Average Rating</li> -->
                                         <li>
@@ -234,7 +234,7 @@
                                             <div class="col-lg-4">
                                                 <div class="reviewer-details clearfix">
                                                     <div class="reviewer-img float-left">
-                                                        <img src="" alt="">
+                                                        <img src="{{ asset('images/'.$review->user->photo) }}" alt="">
                                                     </div>
                                                     <div class="review-time">
                                                         <div class="time">
@@ -274,7 +274,7 @@
                     <div class="course-sidebar natural">
                         <div class="preview-video-box">
                             <a data-toggle="modal" data-target="#CoursePreviewModal">
-                                <img src="{{ asset('images/learning.jpg') }}" alt="" class="img-fluid">
+                                <img src="{{ $course->thumbnail_url }}" alt="" class="img-fluid">
                                 <span class="preview-text">Preview this course</span>
                                 <span class="play-btn"></span>
                             </a>

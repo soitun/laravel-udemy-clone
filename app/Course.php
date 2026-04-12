@@ -4,12 +4,35 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Course extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+
+    /**
+     * Public URL for the course card image.
+     * Supports absolute URLs (e.g. seeded placeholders) and paths under public/images/.
+     */
+    public function getThumbnailUrlAttribute(): string
+    {
+        return self::resolveThumbnailUrl($this->attributes['thumbnail'] ?? null);
+    }
+
+    public static function resolveThumbnailUrl(?string $thumbnail): string
+    {
+        if ($thumbnail === null || $thumbnail === '') {
+            return asset('images/learning.jpg');
+        }
+
+        if (Str::startsWith($thumbnail, ['http://', 'https://', '//'])) {
+            return $thumbnail;
+        }
+
+        return asset('images/'.ltrim($thumbnail, '/'));
+    }
 
     public function lessons()
     {
@@ -18,7 +41,12 @@ class Course extends Model
 
     public function review()
     {
-        return $this->reviews()->whereUserId(auth()->user()->id)->whereCourseId($this->id)->first();
+        $user = auth()->user();
+        if ($user === null) {
+            return null;
+        }
+
+        return $this->reviews()->whereUserId($user->id)->whereCourseId($this->id)->first();
     }
 
     public function reviews()
@@ -26,8 +54,15 @@ class Course extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function getAverageAttribute()
+    public function getAverageAttribute(): int
     {
-        return (int)$this->reviews()->where('user_id', auth()->user()->id)->avg('rating');
+        $user = auth()->user();
+        if ($user === null) {
+            return 0;
+        }
+
+        $avg = $this->reviews()->where('user_id', $user->id)->avg('rating');
+
+        return (int) ($avg ?? 0);
     }
 }

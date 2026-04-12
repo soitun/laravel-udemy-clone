@@ -38,7 +38,7 @@
                                             <div class="cart-course-wrapper">
                                                 <div class="image">
                                                     <a href="{{ route('course_detail', $cart->id) }}">
-                                                        <img src="{{ asset('images/learning.jpg') }}" alt=""
+                                                        <img src="{{ optional(\App\Course::find($cart->id))->thumbnail_url ?? asset('images/learning.jpg') }}" alt=""
                                                              class="img-fluid">
                                                     </a>
                                                 </div>

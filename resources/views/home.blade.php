@@ -72,7 +72,7 @@
                                     <div class="course-box">
                                         <!-- <div class="course-badge position best-seller">Best seller</div> -->
                                         <div class="course-image">
-                                            <img src="" alt="" class="img-fluid">
+                                            <img src="{{ $top_course->thumbnail_url }}" alt="" class="img-fluid">
                                         </div>
                                         <div class="course-details">
                                             <h5 class="title">{{ $top_course->title }}</h5>
@@ -164,7 +164,7 @@
                                 <a href="{{ route('course_detail', $course) }}">
                                     <div class="course-box">
                                         <div class="course-image">
-                                            <img src="" alt="" class="img-fluid">
+                                            <img src="{{ $course->thumbnail_url }}" alt="" class="img-fluid">
                                         </div>
                                         <div class="course-details">
                                             <h5 class="title">{{ $course->title }}</h5>

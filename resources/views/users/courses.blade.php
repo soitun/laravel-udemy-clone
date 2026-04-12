@@ -74,7 +74,7 @@
                             <div class="course-box">
                                 <a href="">
                                     <div class="course-image">
-                                        <img src="{{ asset('images/learning.jpg') }}" alt=""
+                                        <img src="{{ $enroll->course->thumbnail_url }}" alt=""
                                              class="img-fluid">
                                         <span class="play-btn"></span>
                                     </div>
@@ -89,8 +89,7 @@
                                          data-target="#EditRatingModal">
 
                                         @php
-                                            //dd($enroll->course->review());
-                                            $my_rating = $enroll->course->review()['rating'];
+                                            $my_rating = $enroll->course->review()?->rating ?? 0;
                                         @endphp
                                         @for($i = 1; $i <= 5; $i++)
                                             @if ($i <= $my_rating)

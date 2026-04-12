@@ -11,7 +11,7 @@
                         <div class="item clearfix">
                             <div class="item-image">
                                 <a href="">
-                                    <img src="{{ asset('images/learning.jpg') }}" alt="" class="img-fluid">
+                                    <img src="{{ optional(\App\Course::find($cart->id))->thumbnail_url ?? asset('images/learning.jpg') }}" alt="" class="img-fluid">
                                 </a>
                             </div>
                             <div class="item-details">

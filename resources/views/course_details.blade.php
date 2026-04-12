@@ -26,10 +26,13 @@
                             </span>
                         </div>
                         <div class="created-row">
-                            {{--<span class="created-by">--}}
-                            {{--Created by--}}
-                            {{--<a href="">first_name last_name</a>--}}
-                            {{--</span>--}}
+                            @if ($course->user)
+                                <span class="created-by">
+                                    Created by
+                                    <span class="font-weight-bold">{{ $course->user->first_name }} {{ $course->user->last_name }}</span>
+                                </span>
+                                <span class="mx-1">·</span>
+                            @endif
                             <span class="last-updated-date">Created on {{ $course->created_at }}</span>
                             <span class="last-updated-date">Last updated on {{ $course->updated_at }}</span>
                             <span class="comment">

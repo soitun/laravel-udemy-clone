@@ -16,18 +16,20 @@ class HomeController extends Controller
         };
 
         $topCourses = Course::query()
+            ->visibleInCatalog()
             ->tap($courseQuery)
             ->inRandomOrder()
             ->limit(12)
             ->get();
 
         $courses = Course::query()
+            ->visibleInCatalog()
             ->tap($courseQuery)
             ->orderByDesc('created_at')
             ->take(10)
             ->get();
 
-        $totalCourses = Course::count();
+        $totalCourses = Course::query()->visibleInCatalog()->count();
 
         return view('home', compact('courses', 'topCourses', 'totalCourses'));
     }
@@ -37,12 +39,18 @@ class HomeController extends Controller
     {
         return view('courses_by_category')
             ->with('category', $category)
-            ->with('courses', $category->courses()->paginate(6));
+            ->with('courses', $category->courses()->visibleInCatalog()->paginate(6));
     }
 
     // course details
     public function course_detail(Course $course)
     {
+        if (! $course->visibility) {
+            if (! auth()->check() || (int) auth()->id() !== (int) $course->user_id) {
+                abort(404);
+            }
+        }
+
         return view('course_details', compact('course'));
     }
 

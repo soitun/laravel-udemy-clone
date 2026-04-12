@@ -86,8 +86,11 @@ class DatabaseSeeder extends Seeder
         $catalog = require database_path('data/learning_catalog.php');
 
         $this->seedUsers();
+        $userIds = User::query()->pluck('id');
         $categoryIdsByTitle = $this->seedCategories($catalog);
-        $this->seedCoursesAndLessons($catalog, $categoryIdsByTitle);
+        $this->seedCoursesAndLessons($catalog, $categoryIdsByTitle, $userIds);
+
+        User::query()->whereHas('courses')->update(['is_instructor' => true]);
     }
 
     private function seedUsers(): void
@@ -97,6 +100,7 @@ class DatabaseSeeder extends Seeder
             'last_name' => 'User',
             'email' => 'test@example.com',
             'password' => Hash::make('password'),
+            'is_instructor' => true,
         ]);
 
         for ($i = 0; $i < 99; $i++) {
@@ -133,8 +137,9 @@ class DatabaseSeeder extends Seeder
     /**
      * @param  array<string, array<int, string>>  $catalog
      * @param  array<string, int>  $categoryIdsByTitle
+     * @param  \Illuminate\Support\Collection<int, int>  $userIds
      */
-    private function seedCoursesAndLessons(array $catalog, array $categoryIdsByTitle): void
+    private function seedCoursesAndLessons(array $catalog, array $categoryIdsByTitle, $userIds): void
     {
         $courseIndex = 0;
 
@@ -146,6 +151,7 @@ class DatabaseSeeder extends Seeder
                 $course = Course::query()->create(array_merge($fields, [
                     'title' => $title,
                     'category_id' => $categoryId,
+                    'user_id' => $userIds->isNotEmpty() ? $userIds->random() : null,
                 ]));
 
                 foreach (self::LESSON_TITLES as $lessonNum => $lessonTitle) {

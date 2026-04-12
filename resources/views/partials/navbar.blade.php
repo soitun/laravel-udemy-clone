@@ -36,6 +36,9 @@
                     </div>
 
                     @auth
+                        <div class="menu-icon-box d-none d-lg-flex align-items-center mr-2">
+                            <a href="{{ route('instructor.courses.index') }}" class="btn btn-sm btn-outline-secondary">Teach</a>
+                        </div>
                         <div class="user-box menu-icon-box">
                             <div class="icon">
                                 <a href="">
@@ -69,6 +72,16 @@
                                     <li class="user-dropdown-menu-item">
                                         <a href="{{ route('user.courses') }}">
                                             <i class="far fa-gem"></i>My Courses
+                                        </a>
+                                    </li>
+                                    <li class="user-dropdown-menu-item">
+                                        <a href="{{ route('instructor.courses.index') }}">
+                                            <i class="fas fa-chalkboard-teacher"></i>Instructor dashboard
+                                        </a>
+                                    </li>
+                                    <li class="user-dropdown-menu-item">
+                                        <a href="{{ route('instructor.courses.create') }}">
+                                            <i class="fas fa-plus-circle"></i>Create a course
                                         </a>
                                     </li>
                                     <li class="user-dropdown-menu-item">

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Course;
+use App\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -29,6 +30,7 @@ class CourseFactory extends Factory
             'video_url' => null,
             'visibility' => true,
             'category_id' => fake()->numberBetween(1, 10),
+            'user_id' => User::factory(),
         ];
     }
 }

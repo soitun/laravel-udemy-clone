@@ -21,6 +21,14 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'password' => Hash::make('password'),
             'remember_token' => null,
+            'is_instructor' => false,
         ];
+    }
+
+    public function instructor(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'is_instructor' => true,
+        ]);
     }
 }
